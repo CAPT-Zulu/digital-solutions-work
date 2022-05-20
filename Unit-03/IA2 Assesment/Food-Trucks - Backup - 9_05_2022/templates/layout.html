@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ title }}</title>
+    <link rel="shortcut icon" href="/static/images/logo.png">
+
+    {# Font-Awesome #}
+    <!-- Font-Awesome CSS -->
+    <link rel="stylesheet" href="/static/libraries/fontawesome-free-6.1.1-web/css/all.min.css">
+
+    {# Main #}
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+    {# Leaflet #}
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="/static/libraries/leaflet-1.8.0/leaflet.css"/>
+    <!-- Leaflet Javascript (added to top to allow scripts being added in maincontent) -->
+    <script src="/static/libraries/leaflet-1.8.0/leaflet.js"></script>
+
+    {# Light-Search #}
+    <!-- Light-Search Javascript -->
+    <script src="/static/libraries/light-search-js-master/light-search.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="Header">
+        <!-- Navbar -->
+        <nav title="Navbar" class="navbar navbar-container container">
+            <!-- Website Logo & Title -->
+            <a href="/" class="home-link">
+                <img src="/static/images/logo.png" alt="Website's logo "class="navbar-logo">
+                Food Trucks
+            </a>
+            <!-- Hamburger Button -->
+            <button type="button" id="navbar-toggle" aria-controls="navbar-menu" aria-label="Toggle menu" aria-expanded="false" onclick="if(this.ariaExpanded=='true'){this.ariaExpanded='false';}else{this.ariaExpanded='true';}">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- Navbar Items / Dropdown Items -->
+            <div id="navbar-menu" aria-labelledby="navbar-toggle">
+                <ul class="navbar-links nav-left">
+                    <li class="navbar-item"><a class="navbar-link" href="/">Btn1</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="/">Btn2</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="/">Btn3</a></li>
+                    <li class="navbar-item">
+                        <form method="GET" action="search" class="search">
+                           <input class="searchTerm" type="search" name="q" placeholder="Search Trucks...">
+                           <button class="searchButton" type="submit">
+                               <i class="fa fa-search"></i>
+                           </button>
+                        </form>
+                    </li>
+                    <li class="navbar-item dropdown">
+                        <span class="navbar-link">Bell</span>
+                        <div class="dropdown-content">
+                            <p>Test doc</p>
+                            <a href="#"><button class="btn">View Notifications</button></a>
+                        </div>
+                    </li>
+                    <li class="navbar-item dropdown">
+                        <span class="navbar-link">User</span>
+                        <div class="dropdown-content">
+                            {% if not session['user_id'] %}
+                                <p>Log In:</p>
+                                <form method="POST">
+                                    {{ loginform.csrf_token}} <!-- essential -->
+                                    <div title="username" class="">
+                                        <!-- Label -->
+                                        {{ loginform.username.label (for="username", class="") }}
+                                        <!-- Form -->
+                                        {{ loginform.username (size=25, class="") }}
+                                        <!-- Errors -->
+                                        {% for error in loginform.username.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div title="password" class="">
+                                        <!-- Label -->
+                                        {{ loginform.password.label (for="password", class="") }}
+                                        <!-- Form -->
+                                        {{ loginform.password (size=25, class="") }}
+                                        <!-- Errors -->
+                                        {% for error in loginform.password.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div title="submit" class="">
+                                        {{ loginform.submit (class="btn") }}
+                                    </div>
+                                </form>
+                                <br>
+                                <a href="/signup"><button class="btn">Create an Account!</button></a>
+                            {% else %}
+                                <a href="/logout"><button class="btn">Logout!</button></a>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Flash Messages -->
+        <div title="Flash Messages" style="position: absolute">
+            {% for message in get_flashed_messages() %}
+                <div class="alert">
+                    <strong>{{ message }}</strong>
+                    <i class="fa-solid fa-x" class="close-btn" onclick="document.getElementsByClassName('alert')[0].remove()"></i>
+                </div>
+            {% endfor %}
+        </div>
+    </header>
+
+    <!-- Main Content Block -->
+    <div id="Main-Content">
+        {% block mainContent %} {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer id="Footer">
+        <div title="Social Links">
+            <h1>Socials:</h1>
+            <ul>
+                <li><a href="/">Facebook</a></li>
+                <li><a href="/">Instagram</a></li>
+                <li><a href="/">Twitter</a></li>
+                <li><a href="/">Gmail</a></li>
+            </ul>
+        </div>
+        <div title="Other Links">
+            <h1>Other:</h1>
+            <ul>
+                <li><a href="/">blah</a></li>
+                <li><a href="/">blah</a></li>
+                <li><a href="/">blah</a></li>
+                <li><a href="/">blah</a></li>
+            </ul>
+        </div>
+        <div title="About Links">
+            <h1>About:</h1>
+            <ul>
+                <li><a href="/">blah</a></li>
+                <li><a href="/">blah</a></li>
+                <li><a href="/">blah</a></li>
+                <li><a href="/">blah</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+{#<script src="/static/js/main.js"></script>#}
+</html>

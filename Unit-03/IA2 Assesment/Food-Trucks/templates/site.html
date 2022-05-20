@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <!-- Page Contents -->
+    <div id="Content-1" class="auto-column">
+		<!-- Site Title -->
+        <div style="background-image: url('{{ site[12] }}');">
+            <h1 class="blur"><img src="{{ site[15] }}" alt="{{ site[16] }}" width="32px" height="32px"> {{ site[1] }}</h1>
+            <h3 class="blur">{{ site[16] }}</h3>
+        </div>
+		<!-- Site Description -->
+        <div>
+            <p>{{ site[2] }}</p>
+            <img src="{{ site[15] }}" alt="{{ site[16] }}" width="300vw" height="300vw">
+        </div>
+		<!-- Site History -->
+        <div>
+            <h1>Truck History:</h1>
+            {% for booking in bookings %}
+                <a href="truck?id={{ booking[1] }}"><h3>{{ booking[0] }}</h3></a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

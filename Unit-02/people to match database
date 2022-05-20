@@ -1,0 +1,29 @@
+select name, age, sex
+from members
+where sex = 'm'
+and age > 40
+order by name asc;
+
+select name, age, sex, likes
+from members
+where likes = 'dancing'
+order by name asc;
+
+select name, age, sex
+from members
+where sex = 'f'
+and age between 20 and 40;
+
+select *
+from members
+where likes like '%ing';
+
+select *
+from members
+where likes = 'football' or likes = 'golf';
+
+select name
+from members
+where likes in ('football', 'golf')
+order by earns desc;
+

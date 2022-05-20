@@ -1,0 +1,13 @@
+-- Join Queries
+
+select od.prod_code, description, order_price, order_qty
+from order_details od, products p
+where od.prod_code = p.prod_code
+and order_no = 1234;
+
+--JQ2
+select cust_name, street, town, post_code, order_date
+from customers c, orders o
+where c.cust_no = o.cust_no
+and order_date like '1706%'
+order by order_date asc;

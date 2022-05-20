@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <!-- Page Contents -->
+    <div id="Content-1">
+		<!-- Signup Form -->
+        <form method="POST">
+            {{ form.csrf_token}} <!-- essential -->
+            <div title="username" class="">
+                <!-- Label -->
+                {{ form.username.label (for="username", class="") }}
+                <!-- Form -->
+                {{ form.username (size=25, class="") }}
+                <!-- Errors -->
+                {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="password" class="">
+                <!-- Label -->
+                {{ form.password.label (for="password", class="") }}
+                <!-- Form -->
+                {{ form.password (size=25, class="") }}
+                <!-- Errors -->
+                {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="password_confirmation" class="">
+                <!-- Label -->
+                {{ form.password_confirmation.label (for="password_confirmation", class="") }}
+                <!-- Form -->
+                {{ form.password_confirmation (size=25, class="") }}
+                <!-- Errors -->
+                {% for error in form.password_confirmation.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="email" class="">
+                <!-- Label -->
+                {{ form.email.label (for="email", class="") }}
+                <!-- Form -->
+                {{ form.email (size=25, class="") }}
+                <!-- Errors -->
+                {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="email_confirmation" class="">
+                <!-- Label -->
+                {{ form.email_confirmation.label (for="email_confirmation", class="") }}
+                <!-- Form -->
+                {{ form.email_confirmation (size=25, class="") }}
+                <!-- Errors -->
+                {% for error in form.email_confirmation.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="submit" class="">
+                {{ form.submit (class="btn") }}
+            </div>
+			{# Link goes no where due to this only being a prototype #}
+            <a href="#">Click Here for Terms and conditions and Privacy Policy!</a>
+        </form>
+    </div>
+{% endblock %}

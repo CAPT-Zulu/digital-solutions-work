@@ -1,0 +1,74 @@
+--page 46, Pople DB
+--a
+select name
+from members
+where earns = (
+    select max(earns)
+    from members);
+    
+--b
+select *
+from members
+where sex = 'm'
+and earns < (
+    select avg(earns)
+    from members
+    where sex = 'm');
+
+--c
+select name, likes
+from members
+where name != 'Mario'
+and likes = (
+    select likes
+    from members
+    where name = 'Mario');
+    
+--d
+select name, dislikes
+from members
+where dislikes in ('students', 'politics', 'sql');
+
+--e
+select name, earns
+from members
+where sex = 'm'
+and earns > (
+    select max(earns)
+    from members
+    where sex = 'f');
+   
+--select name, earns
+--from members
+--where sex = 'm'
+--and earns > all (
+--    select earns
+--    from members
+--    where sex = 'f');
+    
+--f
+select name, earns
+from members 
+where sex = 'f'
+and earns > (
+    select min(earns)
+    from members
+    where sex = 'm');
+
+--g 
+select name, likes
+from members
+where sex = 'm'
+and likes in (
+    select likes
+    from members
+    where sex = 'f');
+    
+--h
+select name, age
+from members
+where sex = 'f'
+and age > (
+    select age
+    from members
+    where name = 'Kathy');

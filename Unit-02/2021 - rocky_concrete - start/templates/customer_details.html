@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+<h4>Detials for: {{cdetails['cust_name']}}</h4>
+<h6>{{cdetails['cust_no']}}</h6>
+<hr>
+<p>{{cdetails['street']}}<br>
+{{cdetails['town']}} {{cdetails['post_code']}}</p>
+
+<p>Credit Limit: ${{cdetails['cr_limit']}} <br>
+Current Balance: <strong>${{cdetails['curr_bal']}}</strong></p>
+
+<div>
+    <h4>Order Summary</h4>
+    <hr>
+    <p>Total Number of Orders Made: {{ocount['order count']}}</p>
+    <p>Last Order: {{ocount['last order']}}</p>
+    <p>Total of Orders: ${{ocount['total orders']}}</p>
+</div>
+
+<div>
+    <h4>Order History</h4>
+    <hr>
+    {% if ohistory|length > 0 %}
+        <table class="table table-secondary table-striped table-sm table-bordered">
+            <thead class="table-dark">
+                <th>Order number</th>
+                <th>Order date</th>
+            </thead>
+            {% for row in ohistory %}
+            <tr>
+                <td><a href="/order_details?oid={{row['order_no']}}">{{row['order_no']}}</a></td>
+                <td>{{row['order_date']}}</td>
+            </tr>
+            {% endfor %}
+            <caption>Customers Order History</caption>
+        </table>
+    {% else %}
+        <p>No Orders Made By This Customer</p>
+    {% endif %}
+</div>
+{% endblock %}

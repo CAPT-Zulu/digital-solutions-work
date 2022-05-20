@@ -1,0 +1,45 @@
+--ST1
+select sum(order_qty * order_price) as 'Order Total'
+from order_details
+where order_no = 1234;
+
+--ST2
+select min(cr_limit) as 'min credit limit', max(cr_limit) as 'max credit limit'
+from customers;
+
+--ST3
+select max(cr_limit - curr_bal) as 'max aval'
+from customers;
+
+--ST4
+select max(curr_bal - cr_limit) as 'Max Over'
+from customers
+where curr_bal > cr_limit;
+
+--ST5
+select min(order_date)
+from orders;
+
+--ST6
+select max(order_date)
+from orders;
+
+--ST7
+select max(order_price * order_qty) as 'Something'
+from order_details
+where prod_code = 'LOO';
+
+--ST8
+select min(list_price * remake_qty)
+from products
+where qty_on_hand <= remake_level;
+
+--ST9
+select max(order_qty)
+from order_details
+where prod_code = 'MOO';
+
+--ST10
+select count(*)
+from orders
+where cust_no = 2255;

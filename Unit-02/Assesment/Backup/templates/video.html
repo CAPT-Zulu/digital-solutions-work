@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <div title="Main Content" class="container-100">
+        <div class="position-relative text-center p-2" style="background-image: url('/static/images/background.png');">
+            <h1>Video: {{ results_video[0][1] }}</h1>
+        </div>
+        <div class="row videoWrapper">
+            <iframe width="100" height="100" src="{{ results_video[0][3].replace('watch', 'embed').replace('?v=', '/').replace('video', 'embed/video') }}" title="{{ results_video[0][1] }}"></iframe>
+        </div>
+        <div class="row text-center">
+            <a href="{{ results_video[0][3] }}">URL: {{ results_video[0][3] }}</a>
+        </div>
+        <div class="row p-4" style="height: 900px;">
+            <div class="col">
+                <div class="row outLine">
+                    <h4>Description: </h4>
+                    <br>
+                    <p>{{ results_video[0][2] }}</p>
+                </div>
+                <div class="row outLine">
+                    <h4>Topics: </h4>
+                    {% for topic in results_video[1] %}
+                        <p>{{ topic[1] }}</p>
+                    {% endfor %}
+                    <p></p>
+                </div>
+            </div>
+            <div class="col">
+                <form method="POST" class="row outLine">
+                    {% if results_video[0][0] in result_other_videos[1] %}
+                        <button type="submit" name="flag_btn" value="unflag" class="col btn btn-outline-secondary">Unflag this video <i class="bi bi-flag"></i></button>
+                    {% else %}
+                        <button type="submit" name="flag_btn" value="flag" class="col btn btn-outline-secondary">Flag this video <i class="bi bi-flag-fill"></i></button>
+                    {% endif %}
+
+                    <a class="col btn btn-outline-secondary" href="editvideo?id={{ results_video[0][0] }}">Edit this video <i class="bi bi-pencil-square"></i></a>
+
+                    {% if results_video[0][8] == 'true' and session['is_teacher'] == 'true'%}
+                        <button type="submit" name="report_btn" value="unreport" class="col btn btn-outline-secondary">Report okay link <i class="bi bi-check2"></i></button>
+                    {% else %}
+                        <button type="submit" name="report_btn" value="report" class="col btn btn-outline-secondary">Report broken link <i class="bi bi-exclamation-triangle-fill"></i></button>
+                    {% endif %}
+
+                    {% if session['is_teacher'] == 'true' %}
+                        {% if results_video[0][5] == 'true' %}
+                            <button type="submit" name="pending_btn" value="approve" class="col btn btn-outline-secondary">Approve this video <i class="bi bi-check-square"></i></button>
+                        {% else %}
+                            <button type="submit" name="pending_btn" value="disapprove" class="col btn btn-outline-secondary">Disapprove this video <i class="bi bi-x-square"></i></button>
+                        {% endif %}
+                    {% endif %}
+                </form>
+                <div class="row outLine p-2">
+                    <div class="row text-center">
+                        <h4>Other Videos</h4>
+                    </div>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-2 g-3 p-4">
+                        {% for video in result_other_videos[0] %}
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <div class="bd-placeholder-img card-img-top videoWrapper">
+                                    <iframe width="100" height="100" src="{{ video[3].replace('watch', 'embed').replace('?v=', '/').replace('video', 'embed/video') }}" title="{{ video[1] }}"></iframe>
+                                </div>
+
+                                <div class="card-body bg-dark">
+                                    <h6><a class="text-decoration-none" href="video?id={{ video[0] }}">{{ video[1] }}</a></h6>
+                                    <a class="card-text d-none d-sm-block text-decoration-none" href="video?id={{ video[0] }}">{{ video[2][:100] + '...' }}</a>
+                                    <div class="d-flex justify-content-between align-items-center row d-none d-sm-block">
+                                        <div class="btn-group col">
+                                            <a class="btn btn-sm btn-outline-secondary" href="video?id={{ video[0] }}">View</a>
+                                            {% if session['is_teacher'] %}
+                                                <a class="btn btn-sm btn-outline-secondary">Edit</a>
+                                            {% endif %}
+                                            <a class="btn btn-sm btn-outline-secondary">Report Broken Link</a>
+                                        </div>
+                                        <div class="text-muted col btn">
+                                            {% if session['is_teacher'] == 'true' %}
+                                                {% if video[5] == 'false' %}
+                                                    <i class="bi bi-check-square"></i>
+                                                {% else %}
+                                                    <i class="bi bi-x-square"></i>
+                                                {% endif %}
+
+                                                {% if video[8] == 'true' %}
+                                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                                {% endif %}
+                                            {% endif %}
+
+                                            {% if video[0] in result_other_videos[1] %}
+                                                <i class="bi bi-flag-fill"></i>
+                                            {% else %}
+                                                <i class="bi bi-flag"></i>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

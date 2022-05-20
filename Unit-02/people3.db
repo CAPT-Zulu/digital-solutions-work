@@ -1,0 +1,14 @@
+update members
+set earns = 2500
+where name = 'Bill';
+
+update members
+set age = age + 1;
+
+insert
+into members (name, age, sex, earns, likes, dislikes)
+values ('Doc', 'Deceased', 'm', 40000, 'flying', 'being dead');
+
+insert
+into members (name, age, sex, earns, likes, dislikes)
+values ('Chell', 'unkowen', 'g', 0, 'Cake', 'Fire');

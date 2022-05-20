@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div>
+        {% for datas in data %}
+        <tr>
+            <td scope="row">{{ first_name }}</td>
+            <td>{{ last_name }}</td>
+            <td>{{ height_feet }}</td>
+            <td>{{ position }}</td>
+            <!--td>{{ data[""] }}</td-->
+
+
+        </tr>
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,61 @@
+--SG1
+select town, count(*)
+from customers
+group by town;
+
+--SG2
+select cust_no, count(*) as 'No_of_Orders'
+from orders
+group by cust_no
+order by no_of_Orders desc;
+
+--SG3
+select prod_group, sum(list_price * qty_on_hand) as 'Stock Value'
+from products
+group by prod_group;
+
+--SG4
+select town, count(*) as 'Heavy Debt Nos'
+from customers
+where curr_bal/cr_limit >= 0.9
+group by town;
+
+--SG5
+select prod_code, sum(order_qty*order_price) as 'total'
+from order_details
+group by prod_code
+having total > 10000
+order by total desc;
+
+--SG6
+select order_no, sum(order_qty*order_price) as 'total'
+from order_details
+group by order_no
+having total > 1000
+order by total desc;
+
+--SG7
+select town, avg(cr_limit) as 'avg_cr'
+from customers
+group by town
+having avg_cr > 1000
+order by avg_cr desc;
+
+--SG8
+select prod_code, min(order_price), max(order_price)
+from order_details
+group by prod_code
+order by prod_code asc;
+
+--SG9
+select order_date, count(order_date) as 'count'
+from orders
+where order_date like '1706%'
+group by order_date
+order by order_date;
+
+--SG10
+select prod_code, sum(order_qty*order_price) as 'total'
+from order_details
+group by prod_code
+having avg(order_qty*order_price) > 1000;

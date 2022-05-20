@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    {% for datas in data %}
+        <div class="cards">
+            <span> {{ datas['title'] }} </span>
+            {% if datas['geometry'][0] != "" %}
+                <p>
+                    {% for positions in datas['geometry'] %}
+                        {{ positions['date'] }}
+                        <br>
+                    {% endfor %}
+                </p>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+{% endblock content %}

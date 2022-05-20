@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">Featured Artist</div>
+                <img src="{{url_for('static', filename='images/acts/' ~ featuredAct.imagename)}}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h4><a href="/act_details/{{featuredAct.id}}">{{featuredAct.stagename}}</a></h4>
+                    <p>{{featuredAct.description}}</p>
+                    <p><small>genres:<br>
+                        {% for g in featuredGenres %}
+                        {{g.genre}}
+                        {% endfor %}</small></p>
+                </div>
+                <div class="card-footer">
+                    {% if featuredAct.url %}
+                    <a href="{{featuredAct.url}}">Check them out</a>
+                    {% else %}
+                    <p>Look out for them performing!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>Performances today</h4>
+            <h5>Morning Tea</h5>
+            <ul>
+                {% for b in morningTea %}
+                <li>{{b.venue.venuename|upper}}<br>
+                    {{b.act.stagename}}<br>
+                    <small>
+                        {% for g in b.act.genres %}
+                            {{g.genre}}
+                        {% endfor %}</small>
+                </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

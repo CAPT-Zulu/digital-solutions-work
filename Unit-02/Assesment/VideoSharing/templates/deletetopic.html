@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <div title="Main Content" class="container-100">
+        <div class="position-relative text-center p-2" style="background-image: url('/static/images/background.png');">
+            <h1>Delete Topic</h1>
+        </div>
+        <div class="p-4" style="height: 950px; background-color: #5f788a">
+            <div class="">
+                <form method="POST" enctype=multipart/form-data novalidate>
+                    {{ form.csrf_token }} <!-- essential -->
+                    <div class="form-group row p-3">
+                        <p>Select The Topic To Delete:</p>
+                        <select class="form-control" name="topicID">
+                            {% for topic in topics[0] %}
+                                <option value="{{ topic[0] }}">Topic: '{{ topic[1] }}' Class: '{{ topic[4] }} {{ topic[2] }}'</option>
+                            {% endfor %}
+                        </select>
+                        {% if form.topicID.errors %}
+                            <div class="text-danger">
+                                {% for error in form.topicID.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group row p-1">
+                        <p>Warning deleting this topic won't delete videos linked with it in the database but they will be hidden from view as the topic will no longer exists!</p>
+                    </div>
+                    <div class="form-group row p-1">
+                        {{ form.submit (class="btn btn-primary") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+
+    <!-- style sheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class=" col">
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <main>
+        <div class="row">
+            <div class="col">
+                <h1>TacTix</h1>
+                <h2>Noughts and Crosses Online</h2>
+                <p>This is a Flask version of Noughts and crosses, an experiment in usability, GUI and server-side programming efficiency</p>
+                {% if gameon == False %}
+                    <div class="alert alert-warning">
+                        <a data-toggle="tooltip" title="You can click here!" class="btn btn-success btn-lg" href="/">Press Here to Restart Game</a>
+                    </div>
+                {% endif %}
+
+                <!--draw the game board -->
+                <div class="jumbotron shadow p-4 mb-4 bg-white" align="center">
+                    <table background="{{url_for('static', filename='images/board.jpg')}}" cellpadding="20" border="0" width="300">
+                    <!-- draw each row -->
+                        {% for i in range(3) %}
+                            <tr>
+                                <!-- draw each column -->
+                                {% for j in range(3) %}
+                                    <!-- check if position is free -->
+                                    {% if board[i][j] == '-' %}
+                                        <!-- create a cell with button -->
+                                        <td width="100"><a data-toggle="tooltip" title="You can click here!" class="btn btn-success btn-lg" href="/?r={{i}}&c={{j}}">?</a></td>
+                                    {% else %}
+                                        <!-- else create a cell with the X or O image -->
+                                        <td width="100"><img width=40 src="{{url_for('static', filename='images/' + board[i][j] + '.jpg')}}" </td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                   </table>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</div>
+
+
+<!--Bootstrap javascript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+</body>
+</html>

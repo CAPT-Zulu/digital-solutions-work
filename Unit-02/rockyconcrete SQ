@@ -1,0 +1,46 @@
+/*SQ1*/
+select cust_name
+from customers;
+
+/*SQ2*/
+select description, list_price
+from products;
+
+/*SQ3*/
+select *
+from customers;
+
+/*SQ4*/
+select *
+from products
+where list_price > 100;
+
+/*SQ5*/
+select cust_name, curr_bal
+from customers
+where curr_bal > 250;
+
+/*SQ6*/
+select description, prod_group
+from products
+where prod_group = 'A';
+
+/*SQ7*/
+select *
+from products
+where list_price * qty_on_hand > 1000;
+
+/*SQ8*/
+select cust_no, cr_limit, curr_bal
+from customers
+where cr_limit > curr_bal;
+
+/*SQ9*/
+select *
+from customers
+where post_code >= 4000 or post_code <= 4999;
+
+/*SQ10*/
+select description, qty_on_hand, remake_qty
+from products
+where remake_qty > qty_on_hand;

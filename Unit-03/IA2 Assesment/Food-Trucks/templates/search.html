@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <!-- Page Contents -->
+{#    Abondened Content-1 Search page via get requests #}
+{#    <div id="Content-1">#}
+{#        <form method="GET" action="search">#}
+{#            <input class="searchTerm" type="search" name="q" placeholder="Search Trucks...">#}
+{#            <select class="" id="multiple-select" name="t" multiple>#}
+{#                <option value="1">American</option>#}
+{#                <option value="2">Asian</option>#}
+{#                <option value="3">Fuck</option>#}
+{#            </select>#}
+{#            <button class="searchButton" type="submit">#}
+{#                <i class="fa fa-search"></i>#}
+{#            </button>#}
+{#        </form>#}
+{#        <div>#}
+{#            <multi-input>#}
+{#                <input list="speakers">#}
+{#                <datalist id="speakers">#}
+{#                    <option value="Banquo"></option>#}
+{#                    <option value="Bishop Stokesly of London"></option>#}
+{#                    <option value="Caesar’s Second Watchman"></option>#}
+{#                    <option value="Celia"></option>#}
+{#                    <option value="Cleopatra"></option>#}
+{#                    <option value="Dogberry"></option>#}
+{#                    <option value="Falstaff"></option>#}
+{#                    <option value="First Servant"></option>#}
+{#                    <option value="Hamlet"></option>#}
+{#                    <option value="Juliet"></option>#}
+{#                    <option value="Macbeth"></option>#}
+{#                </datalist>#}
+{#            </multi-input>#}
+{#        </div>#}
+{#    </div>#}
+
+{#    Search page via javascript searching #}
+    <div id="Content-1">
+		<!-- Search Div -->
+        <div class="">
+            {# Due to the time contraints of the project the search bars for name, culture and description do not work-
+            {# together and they overwrite each other #}
+            <!-- Search by name input -->
+            <label for="search_name">Search by name</label>
+            <input class="search" id="search_name" autocomplete="on" value="{{ q }}">
+            <!-- Search by culture input -->
+            <label for="search_culture">Search by culture</label>
+            <input class="search" id="search_culture">
+            <!-- Search by description input -->
+            <label for="search_description">Search by description</label>
+            <input class="search" id="search_description">
+            <!-- Link to index pages map -->
+            <p>Search by location and date using our map. <a href="index#Content-3">click Here for The Map!</a></p>
+            <br>
+
+            <!-- Results container -->
+            <div class="results-container">
+                {% for truck in trucks %}
+                    <a class="card" href="truck?id={{ truck[0] }}">
+                        <div class="logo">
+                            <img class="img" width="80em" height="80em" src="{{ truck[4] }}" alt="{{ truck[5] }}">
+                        </div>
+                        <div class="info">
+                            <h1 class="results_name">{{ truck[1] }}</h1>
+                            <h3 class="results_culture">{{ truck[2] }}</h3>
+                            <br>
+                            <p class="results_description">{{ truck[3] }}</p>
+                        </div>
+{#                        <div class="other"></div>#}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script>
+        {# Code inside the script tag won't be minified for better accsessability #}
+        // Set the general elements
+        const parent = document.querySelector('.results-container');
+
+        // Set the search elements for name
+        const input_name = document.querySelector('#search_name');
+        const results_name = document.querySelectorAll('.results_name');
+        // Refresh search function for name when input has changed
+        input_name.addEventListener('input', function() {Search(input_name, results_name, parent);});
+
+        // Set the search elements for culture
+        const input_culture = document.querySelector('#search_culture');
+        const results_culture = document.querySelectorAll('.results_culture');
+        // Refresh search function for culture when input has changed
+        input_culture.addEventListener('input', function() {Search(input_culture, results_culture, parent);});
+
+        // Set the search elements for description
+        const input_description = document.querySelector('#search_description');
+        const results_description = document.querySelectorAll('.results_description');
+        // Refresh search function for description when input has changed
+        input_description.addEventListener('input', function() {Search(input_description, results_description, parent);});
+
+        // Run on page load once to load the search value for name in the case the navbar search bar has been used
+        Search(input_name, results_name, parent);
+    </script>
+{% endblock %}

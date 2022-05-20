@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <img src="{{ radarurl }}">
+    <p>{{ locations[0]['display_name'] }}</p>
+    <form>
+        <label for="c">Location name:</label><br>
+        <input type="text" id="c" name="c"><br>
+        <input type="submit">
+    </form>
+
+{% endblock content %}

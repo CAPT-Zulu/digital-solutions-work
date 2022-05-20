@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block mainBlock %}
+<h2>Details for {{ student[1] }}</h2>
+<h5>{{ student[0] }}</h5>
+<hr>
+<p>Year Level: {{ student[2] }} <br>
+House: {{ student[3] }}
+</p>
+<img src="{{url_for('static', filename='images/' + student[0] + '.jpg')}}" alt="{{'image of ' + student[1]}}">
+{% endblock %}

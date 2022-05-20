@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div>
+        {% for datas in data %}
+        <div class="cards">
+            <span>{{ request }}</span>
+            <!--p>{{ datas['attributionText'] }}</p-->
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

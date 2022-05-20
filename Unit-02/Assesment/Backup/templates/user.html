@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <div title="Main Content" class="container-100">
+        <div class="row align-items-center text-center p-2" style="background-image: url('/static/images/background.png');">
+            <div class="col">
+                <img class="rounded-circle img-thumbnail img-fluid" src="/static/images/user.png" alt="User Profile Image">
+                <h1>{{ session['firstname'] + ' ' + session['surname'] }}</h1>
+            </div>
+        </div>
+        <div class="p-4" style="height: 950px; background-color: #5f788a">
+            <div class="col">
+                <h4>Username: {{ session['username'] }}</h4>
+                <h4>Student id: {{ session['student_id'] }}</h4>
+                <h4>Staff Code: {{ session['staff_code'] }}</h4>
+                <h4>House: {{ session['house'] }}</h4>
+                <h4>Year: {{ session['year'] }}</h4>
+                <br>
+            </div>
+            <div class="col">
+                <div class="row outLine">
+                    <h4>Classes</h4>
+                </div>
+                <div class="row outLine">
+                    {% for class in result_topics[0] %}
+                        <h5>{{ class[4] }} Class: {{ class[2] }}</h5>
+                        {% for topic in result_topics[1] %}
+                            {% if topic[3] == class[1] %}
+                                <h6>ㅤ<i class="bi bi-arrow-return-right"></i> topic: {{ topic[1] }}</h6>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

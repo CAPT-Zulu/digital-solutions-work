@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+<div>
+    <h4>Order Details for: {{custname['order_no']}}</h4>
+    <hr>
+    {% if odetials|length > 0 %}
+    <p>
+        Customer Linked to Order: <a href="/customer_details?cid={{custname['cust_no']}}">{{custname['cust_name']}}</a><br>
+        Order Date: {{custname['order_date']}}<br>
+        Order Total: ${{total['total']}}<br>
+    </p>
+    <hr>
+    <table class="table table-secondary table-striped table-sm table-bordered">
+        <thead class="table-dark">
+            <th>Product Code</th>
+            <th>Description</th>
+            <th>Order Quantity</th>
+            <th>Order Price</th>
+        </thead>
+        {% for row in odetials %}
+        <tr>
+            <td>{{row['prod_code']}}</td>
+            <td>{{row['description']}}</td>
+            <td>{{row['order_qty']}}</td>
+            <td>${{row['order_price']}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="5" style="text-align: right;">Order Total: ${{total['total']}}</td>
+        </tr>
+        <caption>List of Products Bought In The Order</caption>
+    </table>
+{% else %}
+    <p>Order Number Does Not Exist</p>
+{% endif %}
+</div>
+
+{% endblock %}

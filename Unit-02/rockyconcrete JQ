@@ -1,0 +1,64 @@
+--JQ1
+
+select prod_code, description, order_price, order_qty
+from order_details od, products p
+where od.prod_code = p.prod_code
+and order_no = 1234;
+
+select prod_code, description, order_price, order_qty
+from order_details od
+inner join products p
+on od.prod_code = p.prod_code
+and order_no = 1234;
+
+--JQ3
+select order_no, order_price, prod_code, list_price
+from order_details od, products p
+where od.order_price != p.list_price;
+
+--JQ4
+select cust_name, order_date, order_qty * order_price
+from customers a, orders b, order_details c
+where a.cust_no = b.cust_no
+and b.order_no = c.order_no
+and order_qty * order_price > 500
+order by order_date asc, 3 desc;
+
+--JQ5
+select description, cust_name, town, order_no, cust_no, prod_code
+from products p, customers c, orders o, order_details od
+where c.cust_no = o.cust_no
+and o.order_no = od.order_no
+and od.prod_code = p.prod_code
+and town = 'Brisbane';
+
+--JQ6
+select cust_no, curr_bal, cr_limit, cust_no, order_no, order_date, order_price
+from customers c, orders o, order_details od
+where c.cust_no = o.cust_no
+and o.order_no = od.order_no
+and c.curr_bal > c.cr_limit;
+
+--JQ7
+select cust_no, cust_name, order_no, prod_code, order_date
+from customers c, orders o, order_details od
+where c.cust_no = o.cust_no
+and o.order_no = od.order_no
+and prod_code = 'GNOME';
+--and o.order_no like 170000;
+
+--JQ9
+select prod_code, order_no, order_date
+from orders o, order_details od, products p
+where o.order_no = od.order_no
+and od.prod_code = p.prod_code
+and od.order_qty > p.remake_qty;
+
+--JQ10
+select cust_name, order_qty, list_price, order_price
+from customers c, orders o, order_details od, products p
+where c.custno = o.cust_no
+and o.oder_no = od.oder_no
+and p.prod_code = od.prod_code
+and prod_group = 'A'
+and post_code like '4%';

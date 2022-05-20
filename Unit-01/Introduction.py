@@ -1,0 +1,16 @@
+print('Welcome to digital solutions')
+My_name = "Giggle"
+print(type(My_name))
+print(len(My_name))
+print(My_name.upper())
+print(My_name.capitalize())
+print(My_name.lower())
+
+print(My_name[0])
+print(My_name[2])
+print(My_name[-1])
+print(My_name[-2])
+print(My_name[0:2])
+print(My_name[0:len(My_name) - 1])
+print(My_name[0:-1])
+# print('Welcome', My_name, 'to DIS11')

@@ -1,0 +1,105 @@
+-SN1
+select cust_name
+from customers
+where cr_limit = (
+select max(cr_limit)
+from customers);
+
+--SN2
+select cust_name, cust_no
+from customers
+where curr_bal - cr_limit = (
+select max(curr_bal - cr_limit)
+from customers);
+
+--SN3
+select cust_name
+from customers
+where cust_no = (
+select cust_no
+from orders
+where order_no = (
+select max(order_no)
+from orders));
+
+--SN4
+select *
+from products
+where list_price = (
+select max(list_price)
+from products);
+
+select prod_code, description
+from products
+where prod_code = (
+select prod_code
+from order_details
+where order_price = (
+select max(order_price)
+from order_details));
+
+--SN5
+select *
+from products
+where remake_qty * list_price = (
+select max(remake_qty*list_price)
+from products);
+
+--SN6
+select cust_name, cr_limit
+from customers
+where cr_limit > (
+select cr_limit
+from customers
+where cust_no = 2255);
+
+--SN7
+select cust_name
+from customers
+where cust_no in (
+select cust_no
+from orders
+where order_no in (
+select order_no
+from order_details
+where prod_code = 'STANK'
+and order_price = (
+select max(order_price)
+from order_details
+where prod_code = 'STANK')));
+
+--SN8
+select *
+from orders
+where order_no = (
+select order_no
+from order_details
+group by order_no
+having sum(order_qty * order_price) = (
+select sum(order_qty * order_price)
+from order_details
+group by order_no
+order by 1 desc
+limit 1));
+
+--SN9
+select cust_name
+from customers
+where cust_no in (
+select cust_no
+from orders
+where order_no = (
+select min(order_no)
+from order_details
+where prod_code = 'GNOME'));
+
+--SN10
+select
+cust_name,
+cust_no,
+(select max(order_date) from orders where cust_no = c1.cust_no) as 'last order'
+from customers c1
+where cust_no in (
+select cust_no
+from orders
+where order_date not like '18%');

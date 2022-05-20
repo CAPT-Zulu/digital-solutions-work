@@ -1,0 +1,71 @@
+--IQ1
+select cust_name, steet, town, post_code
+from customers
+where cust_no in (
+    select cust_no
+    from orders
+    where order_date = '170812');
+
+--IQ2
+select cust_name, cust_no
+from customers
+where cust_no in (
+    select cust_no
+    from orders 
+    where order_date like '1704%'
+    and order_no in (
+        select order_no
+        from order_details
+        where prod_code = 'GNOME'));
+        
+--IQ3
+select prod_code, description
+from products
+where prod_code in (
+    select prod_code
+    from order_details
+    where order_no = '1234');
+
+--IQ4
+select cust_name
+from customers
+where cust_no in (
+    select distinct cust_no
+    from orders
+    where order_no in (
+        select order_no
+        from order_details
+        group by order_no
+        having sum(order_qty * order_price) > 1000));
+
+--IQ7
+select description
+from products
+where prod_code in (
+    select prod_code
+    from order_details
+    where order_no in (
+        select order_no
+        from orders
+        where cust_no in (
+            select cust_no
+            from customers
+            where town = 'Gympie')));
+--IQ9
+select cust_name
+from customers
+where cust_no not in (
+    select distinct cust_no
+    from orders 
+    where order_date like '17%');
+
+--IQ10
+select prod_code
+from products
+where prod_code not in (
+    select distinct prod_code
+    from order_details
+    where order_no in (
+        select order_no
+        from orders
+        where order_date like '1707%'));
