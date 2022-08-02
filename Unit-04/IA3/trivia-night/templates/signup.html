@@ -2,7 +2,9 @@
 
 {% block mainContent %}
     <!-- Page Contents -->
-    <div id="Content-1">
+    <div id="Content-1" class="content">
+        <h1 class="content-title">Create an Account!</h1>
+        <div class="line-break"></div>
 		<!-- Signup Form -->
         <form method="POST">
             {{ form.csrf_token }} <!-- essential -->

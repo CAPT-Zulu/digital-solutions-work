@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <!-- Page Contents -->
+    <div id="Content-1" class="content auto-column">
+        <div id="quiz" class=""></div>
+        <div id="leaderboard" class=""></div>
+    </div>
+    <!-- Parsed Json -->
+    <script id="data" type="application/json">{"categories":"{{ result_event[3].replace(" ", "+") }}","difficulty":"{{ result_event[5] }}","comp":"{{ result_comp }}"}</script>
+{% endblock %}

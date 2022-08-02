@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <!-- Page Contents -->
+    <div id="Content-1" class="content">
+        <h1 class="content-title">Event!</h1>
+        <div class="line-break"></div>
+        <a class="button" href="/event/play?id={{ result_event[0] }}">Play</a>
+        <a class="button" href="/event/edit?id={{ result_event[0] }}">Edit</a>
+        <a class="button" href="/event/create">Create a new event</a>
+    </div>
+    <div id="Content-2" class="content">
+        <h1 class="content-title">User Leaderboards:</h1>
+        <div class="line-break"></div>
+        <div class="auto-column">
+            <div>
+                <h2>Top 10 Leaderboard:</h2>
+                <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Score</th>
+                    </tr>
+                    {% for user in leaderboard %}
+                        <tr>
+                            <td>{{ user[0] }}</td>
+                            <td>{{ user[1] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div>
+                <h2>Your position in the Leaderboard:</h2>
+                <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Score</th>
+                    </tr>
+                    {% for user in userboard %}
+                        <tr>
+                            <td>{{ user[0] }}</td>
+                            <td>{{ user[1] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

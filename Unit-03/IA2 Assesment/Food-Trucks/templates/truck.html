@@ -5,7 +5,7 @@
     <div id="Content-1" class="auto-column">
 		<!-- Truck Title -->
         <div style="background-image: url('{{ truck[7] }}');">
-            <h1 class="blur"><img src="{{ truck[4] }}" alt="{{ truck[5] }}" width="32px" height="32px"> {{ truck[1] }}</h1>
+            <h1 class="blur"><img style="width: 32px; height: 32px;" src="{{ truck[4] }}" alt="{{ truck[5] }}"> {{ truck[1] }}</h1>
             <h3 class="blur">{{ truck[2] }}</h3>
         </div>
 		<!-- Truck Description -->
@@ -13,10 +13,11 @@
             <p>{{ truck[3] }}</p>
             <br>
 			<h3>Social Links:</h3>
-			<p>Website: {{ truck[0] }}</p>
-			<p>Facebook: {{ truck[0] }}</p>
-			<p>Instagram: {{ truck[0] }}</p>
-			<p>Twitter: {{ truck[0] }}</p>
+            <p>Website: <a href="{{ truck[10] }}">{{ truck[10] }}</a></p>
+			<p>Facebook: <a href="{{ truck[11] }}">{{ truck[11] }}</a></p>
+            {# Some Trucks have the url in their instagram tag most don't tho #}
+			<p>Instagram: <a href="https://www.instagram.com/{{ truck[12] }}">{{ truck[12] }}</a></p>
+			<p>Twitter: <a href="https://twitter.com/{{ truck[13] }}">{{ truck[13] }}</a></p>
 			<br>
             <form method="POST" class="Skills">
                 <h3 class="name">Ratings</h3>

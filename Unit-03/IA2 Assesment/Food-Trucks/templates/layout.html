@@ -7,10 +7,10 @@
     <link rel="shortcut icon" href="/static/images/logo.png">
 
     {# Main #}
-    <!-- Main CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <!-- Main CSS --> {# Using minifed version for better performance see main.css for the unminifed version #}
+    <link rel="stylesheet" type="text/css" href="/static/css/main.min.css">
     <!-- Main JS --> {# Using minifed version for better performance see main.js for the unminifed version #}
-    <script type="text/javascript" src="/static/js/main.min.js"></script>
+    <script src="/static/js/main.min.js"></script>
 
     {# Font-Awesome #}
     <!-- Font-Awesome CSS -->
@@ -20,7 +20,7 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="/static/libraries/leaflet-1.8.0/leaflet.css"/>
     <!-- Leaflet Javascript (added to top to allow scripts being added in maincontent) -->
-    <script type="text/javascript" src="/static/libraries/leaflet-1.8.0/leaflet.js"></script>
+    <script src="/static/libraries/leaflet-1.8.0/leaflet.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -29,7 +29,7 @@
         <nav title="Navbar" class="navbar navbar-container container">
             <!-- Website Logo & Title -->
             <a href="/" class="home-link">
-                <img src="/static/images/logo.png" alt="Website's logo "class="navbar-logo">
+                <img src="/static/images/logo.png" alt="Website's logo" class="navbar-logo">
                 Food Trucks
             </a>
             <!-- Hamburger Button -->
@@ -41,9 +41,9 @@
             <!-- Navbar Items / Dropdown Items -->
             <div id="navbar-menu" aria-labelledby="navbar-toggle">
                 <ul class="navbar-links nav-left">
+                    <li class="navbar-item"><a class="navbar-link" href="/">Home</a></li>
                     <li class="navbar-item"><a class="navbar-link" href="search">Search</a></li>
                     <li class="navbar-item"><a class="navbar-link" href="sites">Sites</a></li>
-                    <li class="navbar-item"><a class="navbar-link" href="/">Btn3</a></li>
                     <li class="navbar-item">
                         <form method="GET" action="search" class="search">
                            <input class="searchTerm" type="search" name="q" placeholder="Search Trucks...">
@@ -56,7 +56,7 @@
                         <span class="navbar-link"><i class="fa-solid fa-bell"></i></span>
                         <div class="dropdown-content">
                             <p>Test doc</p>
-                            <a href="#"><button class="btn">View Notifications</button></a>
+                            <a href="#" class="btn">View Notifications</a>
                         </div>
                     </li>
                     <li class="navbar-item dropdown">
@@ -87,14 +87,15 @@
                                         {% endfor %}
                                     </div>
                                     <div title="submit" class="">
-                                        {{ loginform.submit (class="btn", href="index") }}
+                                        {{ loginform.submit (class="btn") }}
                                     </div>
+									<p>* Means a value is required for this input</p>
                                 </form>
-                                <a href="/signup"><button class="btn">Create an Account!</button></a>
+                                <a href="/signup" class="btn">Create an Account!</a>
                             {% else %}
                                 <p>Logged in as user: {{ session['username'] }}</p>
                                 <br>
-                                <a href="/logout"><button class="btn">Logout!</button></a>
+                                <a href="/logout" class="btn">Logout!</a>
                             {% endif %}
                         </div>
                     </li>
@@ -138,7 +139,7 @@
         <div title="Other Links">
             <h1>Other:</h1>
             <ul>
-                <li><a href="/">Food truck owner wanting to join? Click here to be sent to Brisbane City Council to register your food truck</a></li>
+                <li><a href="/">Food truck owner wanting to join? <br> Click here to be sent to Brisbane City Council <br> to register your food truck</a></li>
                 <li><a href="/">Where do we get our data?</a></li>
                 <li><a href="/">FAQ</a></li>
                 <li><a href="/">Memes</a></li>

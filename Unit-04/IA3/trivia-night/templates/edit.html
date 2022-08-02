@@ -1,0 +1,87 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <!-- Page Contents -->
+    <div id="Content-1" class="content">
+        <h1 class="content-title">Create an Event!</h1>
+        <div class="line-break"></div>
+		<!-- Create Event Form -->
+        <form method="POST">
+            {{ form.csrf_token }} <!-- essential -->
+            <div title="title" class="">
+                <!-- Label -->
+                {{ form.title.label (for="title", class="") }}
+                <!-- Form -->
+                {{ form.title (size=25, class="", value=result_event[1]) }}
+                <!-- Errors -->
+                {% for error in form.title.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="description" class="">
+                <!-- Label -->
+                {{ form.description.label (for="description", class="") }}
+                <!-- Form -->
+                {{ form.description (size=25, class="", value=result_event[2]) }}
+                <!-- Errors -->
+                {% for error in form.description.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="categories" class="">
+                <!-- Label -->
+                {{ form.categories.label (for="categories", class="") }}
+                <!-- Form -->
+                {{ form.categories (size=25, class="", value=result_event[3]) }}
+                <!-- Errors -->
+                {% for error in form.categories.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="tags" class="">
+                <!-- Label -->
+                {{ form.tags.label (for="tags", class="") }}
+                <!-- Form -->
+                {{ form.tags (size=25, class="", value=result_event[4]) }}
+                <!-- Errors -->
+                {% for error in form.tags.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="difficulty" class="">
+                <!-- Label -->
+                {{ form.difficulty.label (for="difficulty", class="") }}
+                <!-- Form -->
+                {{ form.difficulty (size=25, class="", value=result_event[5]) }}
+                <!-- Errors -->
+                {% for error in form.difficulty.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="start_time" class="">
+                <!-- Label -->
+                {{ form.start_time.label (for="start_time", class="") }}
+                <!-- Form -->
+                {{ form.start_time (size=25, class="", value=result_event[6]) }}
+                <!-- Errors -->
+                {% for error in form.start_time.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="end_time" class="">
+                <!-- Label -->
+                {{ form.end_time.label (for="end_time", class="") }}
+                <!-- Form -->
+                {{ form.end_time (size=25, class="", value=result_event[7]) }}
+                <!-- Errors -->
+                {% for error in form.end_time.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="submit" class="">
+                {{ form.submit (class="btn") }}
+            </div>
+            <button type="submit" name="delete_btn" value="delete" class="btn btn-warning">Delete this event!!!</button>
+        </form>
+    </div>
+{% endblock %}

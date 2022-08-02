@@ -44,11 +44,11 @@ cur = con.cursor()  # Set cur to equal the database cursor
 # Login form
 class LoginForm(FlaskForm):
     # Username
-    username = StringField('Username:', validators=[
+    username = StringField('Username: *', validators=[
         validators.DataRequired()])
 
     # Password
-    password = PasswordField('Password:', validators=[
+    password = PasswordField('Password: *', validators=[
         validators.DataRequired()])
 
     # Login form with a submit button which isn't required but added for user ability
@@ -58,28 +58,28 @@ class LoginForm(FlaskForm):
 # Sign up form
 class SignUp(FlaskForm):
     # Username
-    username = StringField('Username:', validators=[
+    username = StringField('Username: *', validators=[
         validators.DataRequired(),
         validators.Length(3, 12, "The username must be 3 characters min and 12 characters max")])
 
     # Password with a confirmation password
-    password = PasswordField('Password:', validators=[
+    password = PasswordField('Password: *', validators=[
         validators.DataRequired(),
         validators.Length(3, 64, "The password must be 3 characters min and 64 characters max"),
         validators.EqualTo('password_confirmation', message='Passwords must match')])
 
-    password_confirmation = PasswordField('Repeat Password', validators=[
+    password_confirmation = PasswordField('Repeat Password: *', validators=[
         validators.DataRequired(),
         validators.Length(3, 64, "The password must be 3 characters min and 64 characters max"),
         validators.EqualTo('password', message='Passwords must match')])
 
     # Email has email validator and has a confirmation field
-    email = EmailField('Email:', validators=[
+    email = EmailField('Email: *', validators=[
         validators.DataRequired(),
         validators.Email(),
         validators.EqualTo('email_confirmation', message='Emails must match')])
 
-    email_confirmation = EmailField('Repeat Email:', validators=[
+    email_confirmation = EmailField('Repeat Email: *', validators=[
         validators.DataRequired(),
         validators.Email(),
         validators.EqualTo('email', message='Emails must match')])
@@ -527,10 +527,11 @@ def signup():
             # Contacts the signupReturn function which will check the data returned and create an account and or
             # return a flash msg
             signupReturn(signup_form)
-        else:
+        elif login_form.validate():
             # Contacts the loginReturn function which will check if the user exists and logs in and or return a flash
             # msg
-            loginReturn(login_form)
+            print('f')
+            # loginReturn(login_form)
 
     return render_template('signup.html', title='Create an account!', loginform=login_form, form=signup_form)
 
@@ -597,7 +598,7 @@ def truck():
                 if request.form.get("fav_btn") == 'fav':  # Check if user is trying to favourite a truck
                     sql_fav = """
                                     INSERT OR REPLACE INTO users_favourites (user_id, truck_id)
-                                    VALUES (?, ?, ?);"""
+                                    VALUES (?, ?);"""
                     cur.execute(sql_fav, (session['user_id'], id_x,))  # Favourite truck
                     con.commit()
                     flash("Successfully favourited truck!")

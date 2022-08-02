@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ title }}</title>
+    <link rel="shortcut icon" href="/static/images/logo.png">
+    {# Styles #}
+    <!-- Main CSS --> {# Using minifed version for better performance see main.css for the unminifed version #}
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    {# Scripts #}
+    <!-- jquery-3.6.0.min --> {#  #}
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="Header">
+        <!-- Navbar -->
+        <nav title="Navbar" class="navbar navbar-container container">
+            <!-- Website Logo & Title -->
+            <a href="/" class="home-link">
+                <img src="/static/images/logo.png" alt="Website's logo" class="navbar-logo">
+                Trivia Me This
+            </a>
+            <!-- Hamburger Button -->
+            <button type="button" id="navbar-toggle" aria-controls="navbar-menu" aria-label="Toggle menu" aria-expanded="false" onclick="if(this.ariaExpanded=='true'){this.ariaExpanded='false';}else{this.ariaExpanded='true';}">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- Navbar Items / Dropdown Items -->
+            <div id="navbar-menu" aria-labelledby="navbar-toggle">
+                <ul class="navbar-links nav-left">
+                    <li class="navbar-item"><a class="navbar-link" href="/">Home</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="quizzes">Topics</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="leaderboard">Leaderboard</a></li>
+                    <li class="navbar-item dropdown">
+                        <span class="navbar-link"><i class="fa-solid fa-user">User</i></span>
+                        <div class="dropdown-content">
+                            {% if not session['user_id'] %}
+                                <a href="/account/login" class="btn">Log In!</a>
+                                <a href="/account/signup" class="btn">Create an Account!</a>
+                            {% else %}
+                                <p>Logged in as user: {{ session['username'] }}</p>
+                                {% if session['security'] == 'staff' %}
+                                    <p>Is staff</p>
+                                {% endif %}
+                                <br>
+                                <a href="/account/logout" class="btn">Logout!</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Flash Messages -->
+        <div title="Flash Messages" style="position: absolute">
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+                <div class="alert {{ category }}">
+                    <strong>{{ message }}</strong>
+                    <svg viewBox="0 0 320 512" class="close-btn" onclick="document.getElementsByClassName('alert')[0].remove()"><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+                </div>
+            {% endfor %}
+        </div>
+    </header>
+
+    <!-- Main Content Block -->
+    <div id="Main-Content">
+        {% block mainContent %} {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer id="Footer">
+        <div title="Social Links">
+            <h1>Socials:</h1>
+            <ul>
+                <li><a href="/">Facebook</a></li>
+                <li><a href="/">Instagram</a></li>
+                <li><a href="/">Twitter</a></li>
+                <li><a href="/">Gmail</a></li>
+            </ul>
+        </div>
+        <div title="Other Links">
+            <h1>Other:</h1>
+            <ul>
+                <li>blah</li>
+                <li>blah</li>
+                <li>blah</li>
+                <li>blah</li>
+            </ul>
+        </div>
+        <div title="About Links">
+            <h1>About:</h1>
+            <ul>
+                <li><a href="/">Terms of service</a></li>
+                <li><a href="/">Privacy Statement</a></li>
+                <li><a href="/">About us</a></li>
+                <li><a href="/">Contact us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Main JS --> {# Using minifed version for better performance see main.js for the unminifed version #}
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

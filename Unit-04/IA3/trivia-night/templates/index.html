@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <!-- Page Contents -->
+    <div id="Content-1" class="content">
+        <h1 class="content-title">Trivia Me This!</h1>
+        <div class="line-break"></div>
+        <p style="text-align: center">Description with a bit of information on the site and stuff like that yay!</p>
+    </div>
+    <div id="Content-2" class="content">
+        <h1 class="content-title">Trivia Nights:</h1>
+        <div class="line-break"></div>
+        {% for event in events %}
+            <div class="card-container">
+                <h2>{{ event[1] }}</h2>
+                <p>{{ event[2] }}</p>
+                <p>Categories: {{ event[3] }}</p>
+                <p>Start time: {{ event[6] }} - End time: {{ event[7] }}</p>
+                <button>remind me</button>
+                <a class="button" href="/event/view?id={{ event[0] }}">View</a>
+            </div>
+        {% endfor %}
+        Upcoming on currently playing trivia nights: its categories, time, title, description and remind me button
+    </div>
+{% endblock %}

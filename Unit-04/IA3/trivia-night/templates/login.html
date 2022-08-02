@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <!-- Page Contents -->
+    <div id="Content-1" class="content">
+        <h1 class="content-title">Login!</h1>
+        <div class="line-break"></div>
+		<!-- Login Form -->
+        <form method="POST">
+            {{ form.csrf_token }} <!-- essential -->
+            <div title="username" class="">
+                <!-- Label -->
+                {{ form.username.label (for="username", class="") }}
+                <!-- Form -->
+                {{ form.username (size=25, class="") }}
+                <!-- Errors -->
+                {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="password" class="">
+                <!-- Label -->
+                {{ form.password.label (for="password", class="") }}
+                <!-- Form -->
+                {{ form.password (size=25, class="") }}
+                <!-- Errors -->
+                {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div title="submit" class="">
+                {{ form.submit (class="btn") }}
+            </div>
+			{# Link goes no where due to this only being a prototype #}
+			<p>* Means a value is required for this input</p>
+            <a href="#">Click Here for Terms and conditions and Privacy Policy!</a>
+        </form>
+    </div>
+{% endblock %}

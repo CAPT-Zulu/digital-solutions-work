@@ -11,29 +11,29 @@
                 <p>More Detail</p>
             </div>
             <div>
-                <a href="search"><button>Find Trucks</button></a>
+                <a href="search" class="btn">Find Trucks</a>
             </div>
         </div>
         <!-- Truck image gallery -->
         {# This was initially done from a for loop but I wanted the abillity to scale the images per image #}
         <div class="img-gallery">
             <a href="truck?id={{ trucks[0][0] }}" title="{{ trucks[0][1] }}">
-                <img class="img" src="{{ trucks[0][7] }}" alt="{{ trucks[0][8] }}" width="36%" height="32%">
+                <img class="img" style="width: 36%; height: 32%;" src="{{ trucks[0][7] }}" alt="{{ trucks[0][8] }}">
             </a>
             <a href="truck?id={{ trucks[1][0] }}" title="{{ trucks[1][1] }}">
-                <img class="img" src="{{ trucks[1][7] }}" alt="{{ trucks[1][8] }}" width="62%" height="32%">
+                <img class="img" style="width: 62%; height: 32%;" src="{{ trucks[1][7] }}" alt="{{ trucks[1][8] }}">
             </a>
             <a href="truck?id={{ trucks[2][0] }}" title="{{ trucks[2][1] }}">
-                <img class="img" src="{{ trucks[2][7] }}" alt="{{ trucks[2][8] }}" width="49%" height="32%">
+                <img class="img" style="width: 49%; height: 32%;" src="{{ trucks[2][7] }}" alt="{{ trucks[2][8] }}">
             </a>
             <a href="truck?id={{ trucks[3][0] }}" title="{{ trucks[3][1] }}">
-                <img class="img" src="{{ trucks[3][7] }}" alt="{{ trucks[3][8] }}" width="49%" height="32%">
+                <img class="img" style="width: 49%; height: 32%;" src="{{ trucks[3][7] }}" alt="{{ trucks[3][8] }}">
             </a>
             <a href="truck?id={{ trucks[4][0] }}" title="{{ trucks[4][1] }}">
-                <img class="img" src="{{ trucks[4][7] }}" alt="{{ trucks[4][8] }}" width="62%" height="32%">
+                <img class="img" style="width: 62%; height: 32%;" src="{{ trucks[4][7] }}" alt="{{ trucks[4][8] }}">
             </a>
             <a href="truck?id={{ trucks[5][0] }}" title="{{ trucks[5][1] }}">
-                <img class="img" src="{{ trucks[5][7] }}" alt="{{ trucks[5][8] }}" width="36%" height="32%">
+                <img class="img" style="width: 36%; height: 32%;" src="{{ trucks[5][7] }}" alt="{{ trucks[5][8] }}">
             </a>
         </div>
     </div>
@@ -47,7 +47,7 @@
             {% for i in range(3) %}
                 <a class="" href="truck?id={{ trucks[i][0] }}" style="background-image: url({{ trucks[i][7] }})">
                     <div class="logo blur">
-                        <img class="img" width="80em" height="80em" src="{{ trucks[i][4] }}" alt="{{ trucks[i][5] }}">
+                        <img class="img" style="width: 5%; height: 5%;" src="{{ trucks[i][4] }}" alt="{{ trucks[i][5] }}">
                     </div>
                     <div class="info blur">
                         <h1 class="">{{ trucks[i][1] }}</h1>

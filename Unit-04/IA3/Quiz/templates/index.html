@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+    <!-- Page Contents -->
+    <div id="Content-1" class="content">
+        <h1 class="content-title">Trivia Me This!</h1>
+        <div class="line-break"></div>
+        <p style="text-align: center">Description with a bit of information on the site and stuff like that yay!</p>
+    </div>
+    <div id="Content-2" class="content">
+        <h2 class="content-title">Random Questions:</h2>
+        <div class="line-break"></div>
+        <div id="quiz" class="quiz-loop"></div>
+{#        <div class="question-container">#}
+{#            <h1>{{ dailyQuestion['question'] }}</h1>#}
+{#            <form class="question-buttons" method="POST">#}
+{#                {% for answer in dailyQuestion['answers'] %}#}
+{#                    <input type="submit" name="dailyQuestionAnswer" value="{{ answer }}">#}
+{#                {% endfor %}#}
+{#            </form>#}
+{#        </div>#}
+        <div style="text-align: center">This question will refresh in: <p id="time"></p></div>
+        <div class="progressbar">
+            <div id="time_bar"></div>
+        </div>
+    </div>
+    <div id="Content-3" class="content">
+        <h2 class="content-title">Random Quizzes</h2>
+        <div class="line-break"></div>
+        <form class="auto-column" action="/quiz">
+            <input class="grid_button" type="submit" name="diff" value="easy">
+            <input class="grid_button" type="submit" name="diff" value="medium">
+            <input class="grid_button" type="submit" name="diff" value="hard">
+        </form>
+    </div>
+    <div id="Content-4" class="content">
+        <h2 class="content-title">Quiz Categories</h2>
+        <div class="line-break"></div>
+        <form class="auto-column" action="/quiz">
+            <input class="grid_button" type="submit" name="cat" value="music">
+            <input class="grid_button" type="submit" name="cat" value="science">
+            <input class="grid_button" type="submit" name="cat" value="arts_and_literature">
+            <input class="grid_button" type="submit" name="cat" value="history">
+            <input class="grid_button" type="submit" name="cat" value="film_and_tv">
+            <input class="grid_button" type="submit" name="cat" value="sport_and_leisure">
+            <input class="grid_button" type="submit" name="cat" value="general_knowledge">
+            <input class="grid_button" type="submit" name="cat" value="society_and_culture">
+            <input class="grid_button" type="submit" name="cat" value="geography">
+            <input class="grid_button" type="submit" name="cat" value="food_and_drink">
+        </form>
+    </div>
+    <div id="Content-5" class="content">
+        <h2 class="content-title">Leaderboard</h2>
+        <div class="line-break"></div>
+        <div class="auto-column">
+            <div>Your position</div>
+            <div>Top 10</div>
+        </div>
+    </div>
+{% endblock %}
